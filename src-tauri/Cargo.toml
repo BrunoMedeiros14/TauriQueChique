@@ -3,7 +3,7 @@ name = "tauri-que-chique"
 version = "0.0.1"
 description = "Um aplicativo em rust para estudos"
 authors = ["Bruno Henrique de Medeiros"]
-edition = "2024"
+edition = "2021"
 
 [build-dependencies]
 tauri-build = { version = "1", features = [] }
