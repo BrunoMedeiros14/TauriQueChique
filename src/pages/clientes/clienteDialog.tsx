@@ -12,12 +12,12 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Cliente } from "@/models/Cliente";
-import { gerarDatePorString, gerarStringPorDate } from "@/utils/conversores";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
+import { gerarStringPorDate } from '@/utils/conversores';
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputComMascara } from "../../components/input-com-mascara";
 import { Button } from "../../components/ui/button";
@@ -30,6 +30,7 @@ import {
   FormMessage,
 } from "../../components/ui/form";
 import { Input } from "../../components/ui/input";
+import { gerarDatePorString } from "../../utils/conversores";
 
 const formSchema = z.object({
   nome: z.string({ message: "Campo obrigatório." }).min(3, {
@@ -87,21 +88,19 @@ export function DialogCadastrarCliente({ isOpen }: { isOpen: boolean }) {
 
   function onSubmit({
     nome,
-    dataNascimento: dataString,
+    dataNascimento,
     email,
     celular,
     endereco,
   }: z.infer<typeof formSchema>) {
-    const dataNascimento = dataString ? gerarDatePorString(dataString) : null;
-
     const cliente: Cliente = {
       nome,
-      dataNascimento,
+      dataNascimento: gerarDatePorString(dataNascimento),
       email,
       telefone: celular,
       endereco,
     };
-
+    console.log(cliente);
     cadastrarClienteMutation.mutate(cliente);
   }
 
@@ -215,7 +214,11 @@ export function DialogCadastrarCliente({ isOpen }: { isOpen: boolean }) {
   );
 }
 
-export function DialogAtualizarCliente({ clienteId }: { clienteId?: number | null }) {
+export function DialogAtualizarCliente({
+  clienteId,
+}: {
+  clienteId?: number | null;
+}) {
   const queryClient = useQueryClient();
 
   const refBtnClose = useRef<HTMLButtonElement>(null);
@@ -232,17 +235,15 @@ export function DialogAtualizarCliente({ clienteId }: { clienteId?: number | nul
 
   function onSubmit({
     nome,
-    dataNascimento: dataString,
+    dataNascimento,
     email,
     celular,
     endereco,
   }: z.infer<typeof formSchema>) {
-    const dataNascimento = gerarDatePorString(dataString);
-
     const cliente: Cliente = {
       id: Number(clienteId),
       nome,
-      dataNascimento,
+      dataNascimento: gerarDatePorString(dataNascimento),
       email,
       telefone: celular,
       endereco,
@@ -254,10 +255,7 @@ export function DialogAtualizarCliente({ clienteId }: { clienteId?: number | nul
     if (clienteId) {
       buscarClientePorId(clienteId).then(
         ({ dataNascimento, email, endereco, nome, telefone }): void => {
-          form.setValue(
-            "dataNascimento",
-            gerarStringPorDate(dataNascimento) ?? ""
-          );
+          form.setValue("dataNascimento", gerarStringPorDate(dataNascimento));
           form.setValue("email", email);
           form.setValue("endereco", endereco ?? "");
           form.setValue("nome", nome);

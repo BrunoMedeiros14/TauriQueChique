@@ -1,20 +1,20 @@
 import { queryOptions } from "@tanstack/react-query";
+import { invoke } from "@tauri-apps/api";
 import { Cliente } from "../models/Cliente";
 
-export const buscarClientes = queryOptions({
+export const buscarClientes = queryOptions<Cliente[]>({
   queryKey: ["clientes"],
-  queryFn: () => Promise.resolve([]) //window.apiCliente.buscarTodosClientes(),
+  queryFn: () => invoke("buscar_todos_clientes_controller"),
 });
 
 export const buscarClientePorId = async (clienteId: number): Promise<Cliente> =>
-  Promise.resolve({ dataNascimento: new Date(), email: "", endereco: "", nome: "", telefone: "", id: 1 }) //await window.apiCliente.buscarClientePorId(clienteId)
+  await invoke("buscar_cliente_por_id_controller", { clienteId })
 
 export const cadastrarClienteApi = async (cliente: Cliente) =>
-  Promise.resolve({}) //await window.apiCliente.criarCliente(cliente);
+  await invoke("salvar_cliente_controller", { cliente: cliente })
 
 export const atualizarClienteApi = async (cliente: Cliente) =>
-  Promise.resolve({})
-// await window.apiCliente.editarCliente(cliente);
+  await invoke("atualizar_cliente_controller", { cliente: cliente })
 
 export const removerClienteApi = async (clienteId: number | null) =>
-  Promise.resolve({})// await window.apiCliente.removerCliente(clienteId);
+  await invoke("remover_cliente_controller", { clienteId })

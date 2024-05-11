@@ -9,7 +9,16 @@ import {
 import { UserPlus } from "lucide-react";
 import { useRef, useState } from "react";
 import { buscarClientes, removerClienteApi } from "../../api/clientesApi";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from "../../components/ui/alert-dialog";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "../../components/ui/alert-dialog";
 import { DataTable } from "../../components/ui/data-table";
 import { escutarCliqueTeclado } from "../../hooks/escutarCliqueTeclado";
 import { cn } from "../../lib/utils";

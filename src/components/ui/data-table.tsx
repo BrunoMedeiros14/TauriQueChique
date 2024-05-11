@@ -55,7 +55,7 @@ export function DataTable<TData, TValue>({
   });
 
   useEffect(() => {
-    table.getColumn(colunaParaFiltrar).setFilterValue(filtro);
+    table?.getColumn(colunaParaFiltrar)?.setFilterValue(filtro);
   }, [filtro]);
 
   return (

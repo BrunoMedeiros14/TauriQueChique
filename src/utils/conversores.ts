@@ -1,17 +1,20 @@
-const formatoData = new Intl.DateTimeFormat("pt-Br", {dateStyle: "short"});
-const formatoReal = new Intl.NumberFormat("pt-BR", {style: "currency", currency: "BRL"})
+const formatoReal = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" })
 
 export const gerarDatePorString = (dataString: string) => {
   if (dataString) {
     const [dia, mes, ano] = dataString.split("/");
-    return new Date(+ano, +mes - 1, +dia);
+    return `${ano}-${mes}-${dia}`;
   }
   return null;
 };
 
-export const gerarStringPorDate = (dataNascimento: Date | null) => dataNascimento
-    ? formatoData.format(dataNascimento)
-    : null;
+export const gerarStringPorDate = (dataNascimento: string | null) => {
+  if (dataNascimento) {
+    const [ano, mes, dia] = dataNascimento.split("-");
+    return `${dia}/${mes}/${ano}`;
+  }
+  return "";
+}
 
 export const gerarStringReal = (valor: number) => formatoReal.format(valor)
 
