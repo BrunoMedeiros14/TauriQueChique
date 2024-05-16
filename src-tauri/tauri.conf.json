@@ -20,8 +20,9 @@
     "windows": [
       {
         "title": "tauri-que-chique",
-        "width": 800,
-        "height": 600
+        "width": 1280,
+        "height": 720,
+        "fileDropEnabled": true
       }
     ],
     "security": {
@@ -29,7 +30,7 @@
     },
     "bundle": {
       "active": true,
-      "targets": "app",
+      "targets": "updater",
       "identifier": "com.medeirosdev.tauri-que-chique",
       "icon": [
         "icons/32x32.png",
