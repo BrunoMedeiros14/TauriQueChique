@@ -1,28 +1,29 @@
-const formatoReal = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" })
+const formatoReal = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' })
 
-export const gerarDatePorString = (dataString: string) => {
-  if (dataString) {
-    const [dia, mes, ano] = dataString.split("/");
-    return `${ano}-${mes}-${dia}`;
+export const gerarDatePorString = (dataString: string | null) => {
+  if (dataString && dataString.trim().length !== 0) {
+    const [dia, mes, ano] = dataString.split('/')
+    return `${ano}-${mes}-${dia}`
   }
-  return null;
-};
+  return null
+}
 
 export const gerarStringPorDate = (dataNascimento: string | null) => {
   if (dataNascimento) {
-    const [ano, mes, dia] = dataNascimento.split("-");
-    return `${dia}/${mes}/${ano}`;
+    const [ano, mes, dia] = dataNascimento.split('-')
+    return `${dia}/${mes}/${ano}`
   }
-  return "";
+  return ''
 }
 
 export const gerarStringReal = (valor: number) => formatoReal.format(valor)
 
-export const gerarDoublePorValorMonetario = (valor: string): number => parseFloat(valor.replace(/[^\d,]/g, '').replace(',', '.'));
+export const gerarDoublePorValorMonetario = (valor: string): number =>
+  parseFloat(valor.replace(/[^\d,]/g, '').replace(',', '.'))
 
-export const gerarStringPorcentagemPorNumeroInteiro = (valor: number): string => `${valor}%`;
+export const gerarStringPorcentagemPorNumeroInteiro = (valor: number): string => `${valor}%`
 
 export const gerarDoublePorValorPorcentagem = (valor: string): number => {
-  const valorSemPorcentagem = valor.replace('%', '');
-  return parseFloat(valorSemPorcentagem);
-};
+  const valorSemPorcentagem = valor.replace('%', '')
+  return parseFloat(valorSemPorcentagem)
+}

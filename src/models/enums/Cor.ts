@@ -16,5 +16,5 @@ export enum Cor {
   Verde = 'Verde',
   Vermelho = 'Vermelho',
   Vinho = 'Vinho',
-  Outro = 'Outro'
+  Outro = 'Outro',
 }

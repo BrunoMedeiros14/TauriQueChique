@@ -14,5 +14,5 @@ export enum Tecido {
   Poliamida = 'Poliamida',
   Seda = 'Seda',
   Viscose = 'Viscose',
-  Outro = 'Outro'
+  Outro = 'Outro',
 }
