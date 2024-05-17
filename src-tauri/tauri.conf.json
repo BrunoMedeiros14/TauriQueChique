@@ -32,13 +32,9 @@
       "active": true,
       "targets": "updater",
       "identifier": "com.medeirosdev.tauri-que-chique",
-      "icon": [
-        "icons/32x32.png",
-        "icons/128x128.png",
-        "icons/128x128@2x.png",
-        "icons/icon.icns",
-        "icons/icon.ico"
-      ]
+      "publisher": "Bruno Medeiros",
+      "copyright": "© 2024 Bruno Medeiros",
+      "icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"]
     }
   }
 }
